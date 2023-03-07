@@ -79,28 +79,29 @@ def run(
         dnn=False,  # use OpenCV DNN for ONNX inference
         vid_stride=1,  # video frame-rate stride
 ):
-    source = str(source)
+    source = str(source) # 是否保存预测后的图片 默认nosave=False 所以只要传入的文件地址不是以.txt结尾 就都是要保存预测后的图片的
     save_img = not nosave and not source.endswith('.txt')  # save inference images
-    is_file = Path(source).suffix[1:] in (IMG_FORMATS + VID_FORMATS)
-    is_url = source.lower().startswith(('rtsp://', 'rtmp://', 'http://', 'https://'))
-    webcam = source.isnumeric() or source.endswith('.txt') or (is_url and not is_file)
+    is_file = Path(source).suffix[1:] in (IMG_FORMATS + VID_FORMATS) # 文件类型
+    is_url = source.lower().startswith(('rtsp://', 'rtmp://', 'http://', 'https://'))  # 是否是url网络地址
+    webcam = source.isnumeric() or source.endswith('.txt') or (is_url and not is_file)  # 是否是使用webcam 网页数据 一般是Fasle  因为我们一般是使用图片流LoadImages(可以处理图片/视频流文件)
     screenshot = source.lower().startswith('screen')
     if is_url and is_file:
         source = check_file(source)  # download
 
     # Directories
-    save_dir = increment_path(Path(project) / name, exist_ok=exist_ok)  # increment run
-    (save_dir / 'labels' if save_txt else save_dir).mkdir(parents=True, exist_ok=True)  # make dir
+    save_dir = increment_path(Path(project) / name, exist_ok=exist_ok)  # increment run # 增量运行
+    (save_dir / 'labels' if save_txt else save_dir).mkdir(parents=True, exist_ok=True)  # make dir 创建文件夹用于存储输出结果
+
 
     # Load model
-    device = select_device(device)
+    device = select_device(device)  # 获取当前主机可用的设备
     model = DetectMultiBackend(weights, device=device, dnn=dnn, data=data, fp16=half)
-    stride, names, pt = model.stride, model.names, model.pt
+    stride, names, pt = model.stride, model.names, model.pt # stride: 模型最大的下采样率 [8, 16, 32] 所有stride一般为32 names: 得到数据集的所有类的类名 pt 模型权重文件
     imgsz = check_img_size(imgsz, s=stride)  # check image size
 
     # Dataloader
     bs = 1  # batch_size
-    if webcam:
+    if webcam: # 确保输入图片的尺寸imgsz能整除stride  如果不能则调整为能被整除并返回
         view_img = check_imshow(warn=True)
         dataset = LoadStreams(source, img_size=imgsz, stride=stride, auto=pt, vid_stride=vid_stride)
         bs = len(dataset)
@@ -251,7 +252,7 @@ def parse_opt():
 
 
 def main(opt):
-    check_requirements(exclude=('tensorboard', 'thop')) #  # 检查已经安装的包是否满足requirements对应txt文件的要求
+    check_requirements(exclude=('tensorboard', 'thop')) # 检查已经安装的包是否满足requirements对应txt文件的要求
     run(**vars(opt)) ## 执行run 开始推理
 
 
