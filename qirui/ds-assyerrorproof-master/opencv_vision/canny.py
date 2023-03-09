@@ -29,7 +29,7 @@ def cann(path):
 
 
 def CannyThreshold(lowThreshold):
-    detected_edges = cv2.GaussianBlur(gray, (3, 3), 0)
+    detected_edges = cv2.GaussianBlur(gray, (3, 3), 0) # 高斯滤波
     detected_edges = cv2.Canny(detected_edges,
                                lowThreshold,
                                lowThreshold * ratio,
@@ -45,12 +45,14 @@ if __name__=="__main__":
     ratio = 4
     kernel_size = 3
 
-    img = cv2.imread(path)
+    img = cv2.imread(path) # 读取
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-    cv2.namedWindow('canny demo')
+    cv2.namedWindow('canny demo',0)# 创建窗口canny demo,0自适应窗口大小
+    cv2.resizeWindow('canny demo',1000,1000)  # cv2.resizeWindow
 
-    cv2.createTrackbar('Min threshold', 'canny demo', lowThreshold, max_lowThreshold, CannyThreshold)
+    cv2.createTrackbar('Min threshold', 'canny demo', lowThreshold, max_lowThreshold, CannyThreshold) 
+    # 第一个参数时滑动条的名字，第二个参数是滑动条被放置的窗口的名字， 第三个参数是滑动条默认值，第四个参数时滑动条的最大值，第五个参数时回调函数，每次滑动都会调用回调函数。
 
     CannyThreshold(0)  # initialization
     if cv2.waitKey(0) == 27:
