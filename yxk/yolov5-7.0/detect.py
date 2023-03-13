@@ -38,9 +38,9 @@ FILE = Path(__file__).resolve()  # 获取该文件的绝对路径， 输出****/
 ROOT = FILE.parents[0]  # YOLOv5 root directory =FILE.parent   获取yolov5下的根路径，输出****/yolov5-7.0 
 if str(ROOT) not in sys.path: # 查询路径的列表是否在内，如果不在内则添加
     sys.path.append(str(ROOT))  # add ROOT to PATH
-ROOT = Path(os.path.relpath(ROOT, Path.cwd()))  # relative # 将其绝对路径转换为相对路径
+ROOT = Path(os.path.relpath(ROOT, Path.cwd()))  # relative  将其绝对路径转换为相对路径
 
-# ----------------- 导入自定义的其他包 -------------------
+# ----------------- 导入自定义的其他包 -------------------------------------------------------------------------------------------------------------------------
 from models.common import DetectMultiBackend
 from utils.dataloaders import IMG_FORMATS, VID_FORMATS, LoadImages, LoadScreenshots, LoadStreams
 from utils.general import (LOGGER, Profile, check_file, check_img_size, check_imshow, check_requirements, colorstr, cv2,
@@ -49,7 +49,7 @@ from utils.plots import Annotator, colors, save_one_box
 from utils.torch_utils import select_device, smart_inference_mode
 
 
-@smart_inference_mode() # # 该注解是自个定义的注解，主要的功能是判断torch版本 如果torch>=1.9.0则应用torch.inference_mode()装饰器，否则使用torch.no_grad()装饰器
+@smart_inference_mode() # 该注解是自个定义的注解，主要的功能是判断torch版本 如果torch>=1.9.0则应用torch.inference_mode()装饰器，否则使用torch.no_grad()装饰器
 def run(
         weights=ROOT / 'yolov5s.pt',  # model path or triton URL 权重文件地址 默认ROOT yolov5s.pt
         source=ROOT / 'data/images',  # file/dir/URL/glob/screen/0(webcam) 测试数据文件(图片或视频)的保存路径 默认data/images
