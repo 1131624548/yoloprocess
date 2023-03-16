@@ -11,12 +11,12 @@ import os      # 导入os文件操作模块
 import shutil  # 导入shutil高级文件操作模块
 
 
-root =r"E:\workspace\20230306" # 图片和标签在同一个文件夹中
+root =r"E:\workspace\20230316" # 图片和标签在同一个文件夹中
 if not os.path.exists(root):
     os.makedirs(root)
 
 #源文件夹路径
-path = r"E:\workspace\3-4\15L"
+path = r"E:\workspace\datasets\yxk\3-15\Z15"
 folders= os.listdir(path)
 for folder in folders:
     dir = path + '\\' +  str(folder)
