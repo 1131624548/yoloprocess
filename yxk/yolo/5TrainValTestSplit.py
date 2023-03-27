@@ -69,8 +69,8 @@ def toLabelPath(img_path, label_path):
     return os.path.join(label_path, label)
 
 def main():
-    img_path = r'E:\workspace\camera\images'
-    label_path = r'E:\workspace\camera\labels'
+    img_path = r'E:\workspace\datasets\yxk\phone\images'
+    label_path = r'E:\workspace\datasets\yxk\phone\labels'
     split_list = [0.7, 0.2, 0.1]	# 数据集划分比例[train:val:test]
     split_img(img_path, label_path, split_list)
 

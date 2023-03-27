@@ -26,11 +26,11 @@ DIOR_CATEGORIES=['golffield','Expressway-toll-station','vehicle','trainstation',
 
 parser=argparse.ArgumentParser(description='2COCO')
 #parser.add_argument('--image_path',type=str,default=r'T:/shujuji/DIOR/JPEGImages-trainval/',help='config file')
-parser.add_argument('--image_path',type=str,default=r'E:\workspace\data\phone\images/',help='config file')
+parser.add_argument('--image_path',type=str,default=r'E:\workspace\phone\images\val/',help='config file')
 #parser.add_argument('--annotation_path',type=str,default=r'T:/shujuji/DIOR/Annotations/',help='config file')
-parser.add_argument('--annotation_path',type=str,default=r'E:\workspace\data\phone\labels/',help='config file')
+parser.add_argument('--annotation_path',type=str,default=r'E:\workspace\phone\labels\val/',help='config file')
 parser.add_argument('--dataset',type=str,default='YOLO',help='config file')
-parser.add_argument('--save',type=str,default=r'E:\workspace\data\phone\json/instances_train2017.json',help='config file')
+parser.add_argument('--save',type=str,default=r'E:\workspace\phone\annotations\instances_val2017.json',help='config file')
 args=parser.parse_args()
 def load_json(path):
 	with open(path,'r') as f:
