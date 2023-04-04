@@ -6,17 +6,13 @@ Date: 2023-02-06 14:44:15
 LastEditors:  *****
 LastEditTime: *****
 '''
-# 导入python内置模块
-import os
-import shutil
-import random
-
-# 导入第三方库
-from tqdm import tqdm # 时间库
+#coding:utf-8
+import os, shutil, random
+from tqdm import tqdm
 
 def split_img(img_path, label_path, split_list):
     try :   # 创建数据集文件夹
-        Data = r"E:\workspace\20230404"
+        Data = r"E:\workspace\20230302"
         os.mkdir(Data)
 
         train_img_dir = Data + '/images/train'

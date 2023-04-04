@@ -7,8 +7,8 @@ LastEditors:  *****
 LastEditTime: *****
 '''
 #coding:utf-8
-import os # 多种操作系统接口
-#import time
+# import os # 多种操作系统接口
+# import time
 
 # print(time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time())))   
 

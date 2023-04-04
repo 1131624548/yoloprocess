@@ -16,7 +16,7 @@ if not os.path.exists(root):
     os.makedirs(root)
 
 #源文件夹路径
-path = r"E:\workspace\datasets\3-18\Z14"
+path = r"E:\workspace\datasets\3-16\Z14"
 folders= os.listdir(path)
 for folder in folders:
     dir = path + '\\' +  str(folder)
