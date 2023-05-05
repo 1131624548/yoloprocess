@@ -10,7 +10,7 @@ print(time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time())))
 '''
 #coding:utf-8
 import os # 多种操作系统接口
-folder_path= r'E:\workspace\20230421\xml'     # 文件夹路径
+folder_path= r'E:\workspace\20230505\xml'     # 文件夹路径
 xml_files = []
 # 遍历文件夹
 for dirpath, dirnames, filenames in os.walk(folder_path):
