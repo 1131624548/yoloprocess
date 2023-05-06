@@ -18,7 +18,7 @@ from tqdm import tqdm # 时间库
 
 def split_img(img_path, label_path, split_list):
     try :   # 创建数据集文件夹
-        Data = r"E:\workspace\20230404"
+        Data = r"E:\workspace\20230506"
         os.mkdir(Data)
 
         train_img_dir = Data + '/images/train'
@@ -75,8 +75,8 @@ def toLabelPath(img_path, label_path):
     return os.path.join(label_path, label)
 
 def main():
-    img_path = r'E:\workspace\datasets\yxk\Z\b-done\20230404\images'
-    label_path = r'E:\workspace\datasets\yxk\Z\b-done\20230404\labels'
+    img_path = r'E:\workspace\datasets\20230506\images'
+    label_path = r'E:\workspace\datasets\20230506\labels'
     split_list = [0.7, 0.2, 0.1]	# 数据集划分比例[train:val:test]
     split_img(img_path, label_path, split_list)
 
