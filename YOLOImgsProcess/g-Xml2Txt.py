@@ -90,10 +90,10 @@ def imglist2file(imglist):
  
  
 if __name__ == "__main__":
-    xml_path_list = glob.glob(r"E:\workspace\20230505\xml/*.xml")
+    xml_path_list = glob.glob(r"E:\workspace\20230508\xml/*.xml")
     for xml_path in xml_path_list:
         voc2yolo(xml_path)
  
  
-    imglist = get_image_list(r"E:\workspace\20230505\img")
+    imglist = get_image_list(r"E:\workspace\20230508\img")
     imglist2file(imglist)
