@@ -9,20 +9,21 @@
 # -*- coding: utf-8 -*-
 
 
-#根据预测出来的txt文件裁剪图片
-import os
-import cv2
-from tqdm import tqdm
+#Acording YOLO label txt  crop Detection 
+import os # 多种操作系统接口
+
+import cv2 # opencv 
+from tqdm import tqdm # tqdm 库 
  
-image_input = r'E:\workspace\datasets\20230428\images/'
-txt_input = r'E:\workspace\datasets\20230428\labels/'
+image_input = r'E:\workspace\datasets\20230428\images/'# image
+txt_input = r'E:\workspace\datasets\20230428\labels/'# txt
 path_output = r"E:\workspace\20230504"    # 裁剪出来的小图保存的根目录
-class_names_path = r'E:\workspace\datasets\classes.txt'
+class_names_path = r'E:\workspace\datasets\classes.txt' # 标签
  
-img_total = []
+img_total = [] 
 txt_total = []
  
-def read_class_name(path):        #读取path下的类别民
+def read_class_name(path):        #读取path下的类别数
     f = open(path,'r')
     classes_name = []
     for i in f.readlines():
@@ -31,13 +32,13 @@ def read_class_name(path):        #读取path下的类别民
 classes_name = read_class_name(class_names_path)
  
 file_image = os.listdir(image_input)
-for filename in file_image:#在做jpg文件名列表
-     first,last = os.path.splitext(filename)
+for filename in file_image:#jpg文件名列表
+     first,last = os.path.splitext(filename) # 	分割路径中的文件名与拓展名
      img_total.append(first)
  
 file_txt = os.listdir(txt_input)
-for filename in file_txt:#在做txt文件名列表
-     first,last = os.path.splitext(filename)
+for filename in file_txt:# txt文件名列表
+     first,last = os.path.splitext(filename) # 	分割路径中的文件名与拓展名
      txt_total.append(first)
  
 for img_ in tqdm(img_total):

@@ -19,9 +19,9 @@ root =r"E:\workspace\2-7\6\15L\17_34_48"
 image =r"E:\workspace\2-7\6\15L\17_34_48\img"
 label =r"E:\workspace\2-7\6\15L\17_34_48\xml"
 
-for x in os.scandir(root): # 返回一个 os.DirEntry 对象的迭代器，它们对应于由 path 指定目录中的条目
+for x in os.scandir(root): #  scandir() 函数返回目录内文件名的同时，也返回文件属性信息，它在某些具体情况下能提供更好的性能。
     if x.name.endswith(".jpg"):
-        needpath = r"E:\workspace\2-7\6\15L\17_34_48/{name}".format(name=x.name)
+        needpath = r"E:\workspace\2-7\6\15L\17_34_48/{name}".format(name=x.name) # 格式化字符串
         shutil.move(needpath,image) # 递归地将一个文件或目录 (src) 移至另一位置 (dst) 并返回目标位置。
     if x.name.endswith(".xml"):
         needpath =r"E:\workspace\2-7\6\15L\17_34_48/{name}".format(name=x.name)

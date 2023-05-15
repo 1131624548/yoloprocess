@@ -11,8 +11,6 @@ import os # 导入os库
 
 imgs_dir = r'***\img' # imgs文件夹
 xmls_dir = r'***\xml'    # xmls文件夹
- 
-
 # 删除没有img的xml
 imgs = []
 for img in os.listdir(imgs_dir):

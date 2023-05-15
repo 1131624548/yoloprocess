@@ -9,17 +9,17 @@ import time
 print(time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time())))   
 '''
 #coding:utf-8
-import os      # 导入os文件操作模块
-import shutil  # 导入shutil高级文件操作模块
+import os      # 多种操作系统接口
+import shutil  # 高阶文件操作
 
 
-root =r"E:\workspace\20230508" # 图片和标签在同一个文件夹中
+root =r"E:\workspace\20230515" # 图片和标签在同一个文件夹中
 if not os.path.exists(root):
-    os.makedirs(root)
+    os.makedirs(root) # 递归目录创建函数
 
-#源文件夹路径
-path = r"E:\workspace\datasets\5-5\X13"
-folders= os.listdir(path)
+
+path = r"E:\workspace\datasets\5-15\a" #源文件夹路径x/13/*****
+folders= os.listdir(path) # 返回一个包含由 path 指定目录中条目名称组成的列表。
 for folder in folders:
     dir = path + '\\' +  str(folder)
     files = os.listdir(dir)
@@ -35,8 +35,8 @@ for x in os.listdir(root):
         os.mkdir(os.path.join(root,"img"))
     if not os.path.exists(os.path.join(root,"xml")):
         os.mkdir(os.path.join(root,"xml"))
-    if not os.path.exists(os.path.join(root,"txt")):
-        os.mkdir(os.path.join(root,"txt"))
+    # if not os.path.exists(os.path.join(root,"txt")):
+    #     os.mkdir(os.path.join(root,"txt"))
     if x.endswith(".jpg"):
         oldpath = os.path.join(root,x)
         newpath = os.path.join(root,"img",x)
@@ -45,10 +45,10 @@ for x in os.listdir(root):
         oldpath = os.path.join(root,x)
         newpath = os.path.join(root,"xml",x)
         shutil.move(oldpath,newpath)
-    if x.endswith(".txt"):
-        oldpath = os.path.join(root,x)
-        newpath = os.path.join(root,"txt",x)
-        shutil.move(oldpath,newpath)
+    # if x.endswith(".txt"):
+    #     oldpath = os.path.join(root,x)
+    #     newpath = os.path.join(root,"txt",x)
+    #     shutil.move(oldpath,newpath)
 
 # 删除没有xml的img
 xmls = []

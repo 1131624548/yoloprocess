@@ -1,22 +1,21 @@
  
 '''
-Descripttion: 3-2 Xml标签转Txt.
+Descripttion: VOC2YOLO
 version: 1.0
 Author: xiaoxuesheng
 Date: 2023-02-06 11:02:03
 LastEditors:  *****
 LastEditTime: *****
+import time
+print(time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time())))   
 '''
-
-
+ #coding:utf-8 
+from __future__ import print_function 
  
-#coding:utf-8
-from __future__ import print_function
- 
-import os
-import random
-import glob
-import xml.etree.ElementTree as ET
+import os  # 多种操作系统接口
+import random  # 生成伪随机数
+import glob # Unix 风格路径名模式扩展
+import xml.etree.ElementTree as ET # XML处理模块
  
 def xml_reader(filename):
     """ Parse a PASCAL VOC xml file """
@@ -51,6 +50,7 @@ def voc2yolo(filename):
         x, y, x2, y2 = obj['bbox']
         class_name = obj['name']
         label = classes_dict[class_name]
+        print(filename)
         cx = (x2+x)*0.5 / width
         cy = (y2+y)*0.5 / height
         w = (x2-x)*1. / width
@@ -63,37 +63,37 @@ def voc2yolo(filename):
         f.writelines(lines)
  
  
-def get_image_list(image_dir, suffix=['jpg', 'jpeg', 'JPG', 'JPEG','png']):
-    '''get all image path ends with suffix'''
-    if not os.path.exists(image_dir):
-        print("PATH:%s not exists" % image_dir)
-        return []
-    imglist = []
-    for root, sdirs, files in os.walk(image_dir):
-        if not files:
-            continue
-        for filename in files:
-            filepath = "data/custom/" + os.path.join(root, filename) + "\n"
-            if filename.split('.')[-1] in suffix:
-                imglist.append(filepath)
-    return imglist
+# def get_image_list(image_dir, suffix=['jpg', 'jpeg', 'JPG', 'JPEG','png']):
+#     '''get all image path ends with suffix'''
+#     if not os.path.exists(image_dir):
+#         print("PATH:%s not exists" % image_dir)
+#         return []
+#     imglist = []
+#     for root, sdirs, files in os.walk(image_dir): #  os.walk() 方法用于通过在目录树中游走输出在目录中的文件名
+#         if not files:
+#             continue
+#         for filename in files:
+#             filepath = "data/custom/" + os.path.join(root, filename) + "\n"
+#             if filename.split('.')[-1] in suffix:
+#                 imglist.append(filepath)
+#     return imglist
  
  
-def imglist2file(imglist):
-    random.shuffle(imglist)
-    train_list = imglist[:-100]
-    valid_list = imglist[-100:]
-    with open("train.txt", "w") as f:
-        f.writelines(train_list)
-    with open("valid.txt", "w") as f:
-        f.writelines(valid_list)
+# def imglist2file(imglist):
+#     random.shuffle(imglist)
+#     train_list = imglist[:-100]
+#     valid_list = imglist[-100:]
+#     with open("train.txt", "w") as f:
+#         f.writelines(train_list)
+#     with open("valid.txt", "w") as f:
+#         f.writelines(valid_list)
  
  
 if __name__ == "__main__":
-    xml_path_list = glob.glob(r"E:\workspace\20230508\xml/*.xml")
+    xml_path_list = glob.glob(r"E:\workspace\20230515\xml/*.xml") # 1. import glob 》glob.glob('*.py') 》['primes.py', 'random.py', 'quote.py']
     for xml_path in xml_path_list:
         voc2yolo(xml_path)
  
  
-    imglist = get_image_list(r"E:\workspace\20230508\img")
-    imglist2file(imglist)
+    # imglist = get_image_list(r"E:\workspace\20230508\img")
+    # imglist2file(imglist)
